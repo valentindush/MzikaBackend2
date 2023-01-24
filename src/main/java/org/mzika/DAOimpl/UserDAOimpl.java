@@ -54,11 +54,42 @@ public class UserDAOimpl implements UserDAO {
 
     @Override
     public User updateUser(User user) {
-        return null;
+
+        try{
+
+            transaction = this.session.beginTransaction();
+            session.update(user);
+            transaction.commit();
+
+            return  user;
+        }catch (Exception e){
+            if(transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @Override
     public boolean deleteUser(int id) {
-        return false;
+
+        try{
+            transaction = session.beginTransaction();
+            User user = (User) session.get(User.class , id);
+            if(user != null){
+                session.delete(user);
+            }
+            transaction.commit();
+            return  true;
+        }catch (Exception e){
+            if(transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
+
     }
 }
