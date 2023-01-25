@@ -2,7 +2,7 @@ package org.mzika.DAOimpl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.mzika.DAO.UserDAO;
+import org.mzika.orm.DAO.UserDAO;
 import org.mzika.orm.User;
 
 public class UserDAOimpl implements UserDAO {

@@ -1,4 +1,4 @@
-package org.mzika.DAO;
+package org.mzika.orm.DAO;
 
 import org.mzika.orm.Song;
 

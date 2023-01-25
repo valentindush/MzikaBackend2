@@ -3,46 +3,46 @@ package org.mzika.orm;
 import java.util.Set;
 
 import javax.persistence.*;
-
-
+@Entity
 @Table(name = "artist")
-
 public class Artist {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private User user;
-	private String ArtistName;
-	@OneToMany(cascade = CascadeType.ALL)
-	private Set<Song> songs;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-	public Artist(String artistName) {
-		super();
-		ArtistName = artistName;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
+    private String ArtistName;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Song> songs;
 
-	public String getArtistName() {
-		return ArtistName;
-	}
+    public Artist(String artistName) {
+        super();
+        ArtistName = artistName;
+    }
 
-	public void setArtistName(String artistName) {
-		ArtistName = artistName;
-	}
+    public String getArtistName() {
+        return ArtistName;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public void setArtistName(String artistName) {
+        ArtistName = artistName;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public Set<Song> getSongs() {
-		return songs;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public void setSongs(Set<Song> songs) {
-		this.songs = songs;
-	}
+    public Set<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(Set<Song> songs) {
+        this.songs = songs;
+    }
 
 }
