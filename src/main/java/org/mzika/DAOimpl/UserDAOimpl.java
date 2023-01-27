@@ -5,12 +5,12 @@ import org.hibernate.Transaction;
 import org.mzika.orm.DAO.UserDAO;
 import org.mzika.orm.User;
 
-public class UserDAOimpl implements UserDAO {
+public class UserDAOImpl implements UserDAO {
 
     private Session session;
     Transaction transaction = null;
 
-    public UserDAOimpl(Session session){
+    public UserDAOImpl(Session session){
         this.session = session;
     }
 
@@ -69,7 +69,6 @@ public class UserDAOimpl implements UserDAO {
             e.printStackTrace();
             return null;
         }
-
     }
 
     @Override
@@ -89,7 +88,6 @@ public class UserDAOimpl implements UserDAO {
             }
             e.printStackTrace();
             return false;
-        }
 
     }
-}
+}}
