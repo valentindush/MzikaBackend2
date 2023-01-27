@@ -4,10 +4,11 @@ package org.mzika.DAOimpl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.mzika.DAO.SongDAO;
+import org.mzika.orm.DAO.SongDAO;
 import org.mzika.orm.Song;
 
 import java.util.List;
-
+@Override
 public class SongDAOImpl implements SongDAO {
 
     private Session session;
@@ -17,7 +18,7 @@ public class SongDAOImpl implements SongDAO {
         this.session = session;
     }
 
-
+@Override
     public Song addSong(Song song) {
 
         try {
@@ -38,6 +39,7 @@ public class SongDAOImpl implements SongDAO {
     }
 
 
+    @Override
     public Song getSong(int id) {
 
         try{
@@ -52,6 +54,11 @@ public class SongDAOImpl implements SongDAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Song deleteSong(int id) {
+        return null;
     }
 
     public Song updateSong(int id, Song song){
