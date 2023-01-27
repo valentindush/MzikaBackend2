@@ -21,7 +21,7 @@ public class SongDAOImpl implements SongDAO {
 @Override
     public Song addSong(Song song) {
 
-        try {
+        try{
             transaction = this.session.beginTransaction();
             session.save(song);
             transaction.commit();
@@ -56,10 +56,6 @@ public class SongDAOImpl implements SongDAO {
         }
     }
 
-    @Override
-    public Song deleteSong(int id) {
-        return null;
-    }
 
     public Song updateSong(int id, Song song){
         try{
