@@ -11,5 +11,27 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="dd459251-52ce-42d1-b7be-89973901c095">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/iriza/Documents/competence/mzika/target/classes/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/mzika</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="f97f7a34-bb46-45c7-99e3-6b9ec88b475b">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/iriza/Documents/competence/mzika/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/mzika</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

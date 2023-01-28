@@ -5,7 +5,7 @@ import org.hibernate.Transaction;
 import org.mzika.orm.DAO.UserDAO;
 import org.mzika.orm.User;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO{
 
     private Session session;
     Transaction transaction = null;

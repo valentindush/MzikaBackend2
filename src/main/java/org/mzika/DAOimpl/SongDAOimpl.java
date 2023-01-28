@@ -1,16 +1,13 @@
 package org.mzika.DAOimpl;
 
-package org.mzika.DAOimpl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.mzika.DAO.SongDAO;
 import org.mzika.orm.DAO.SongDAO;
 import org.mzika.orm.Song;
 
 import java.util.List;
-@Override
-public class SongDAOImpl implements SongDAO {
 
+ class SongDAOImpl implements SongDAO {
     private Session session;
     Transaction transaction = null;
 
@@ -18,7 +15,7 @@ public class SongDAOImpl implements SongDAO {
         this.session = session;
     }
 
-@Override
+
     public Song addSong(Song song) {
 
         try{
@@ -39,31 +36,25 @@ public class SongDAOImpl implements SongDAO {
     }
 
 
-    @Override
+
     public Song getSong(int id) {
 
         try{
 
-            transaction = this.session.beginTransaction();
             return (Song) session.get(Song.class, id);
 
         }catch (Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
             e.printStackTrace();
             return null;
         }
     }
-
 
     public Song updateSong(int id, Song song){
         try{
             transaction = session.beginTransaction();
-            session.saveOrUpdate(song);
+            session.update(song);
             transaction.commit();
-            session.close();
-            return (Song) session.update(Song.class, id);
+            return song;
 
         }
         catch(Exception e){
@@ -77,18 +68,16 @@ public class SongDAOImpl implements SongDAO {
     }
 
 
-    public void deleteSong(String id){
-        try{
-            transaction= session.beginTransaction();
-            Song song = session.get(Song.class , id);
-            if (song != null );{
+    public void deleteSong(String id) {
+        try {
+            transaction = session.beginTransaction();
+            Song song = session.get(Song.class, id);
+            if (song != null) {
                 session.delete(song);
             }
             transaction.commit();
-            session.close();
-        }
-        catch(Exception e){
-            if(transaction !=null){
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
 
@@ -97,26 +86,27 @@ public class SongDAOImpl implements SongDAO {
         }
     }
 
-    public List<Song> getAllSong(){
-    try{
-        transaction = session.beginTransaction();
-        List<Song> songs = session.createCriteria(Song.class);
-        transaction.commit();
-        session.close();
-        return songs;
-    }
 
-    catch(Exception e){
-        if(transaction !=null){
-            transaction.roollback();
-        }
+        public List<Song> getAllSongs(){
+            try{
+                transaction = session.beginTransaction();
+                List<Song> songs = session.createCriteria(Song.class).list();
+                transaction.commit();
+                session.close();
+                return songs;
+            }
 
-        e.printStackTrace();
-        return null;
-    }
+            catch(Exception e){
+                if(transaction !=null){
+                    transaction.rollback();
+                }
 
-    }
-}
+                e.printStackTrace();
+                return null;
+            }
+
+    }}
+
 
 
 
