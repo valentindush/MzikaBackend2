@@ -2,24 +2,39 @@ package org.mzika.DAOimpl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.mzika.orm.DAO.SongDAO;
+import org.mzika.DAO.SongDAO;
 import org.mzika.orm.Song;
+import org.mzika.orm.User;
 
 public class SongDAOimpl implements SongDAO {
 
     private Session session;
     Transaction transaction = null;
-
     public SongDAOimpl(Session session){
         this.session = session;
     }
 
-   
+
     @Override
-    public User createSong(Song song) {
+    public Song updateSong(Song song) {
+        try {
+            transaction = this.session.beginTransaction();
+            session.update(song);
+            transaction.commit();
+            return  song;
 
-       try {
+        }catch (Exception e){
+            if(transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return null;
+        }
+    }
 
+    @Override
+    public Song createSong(Song song) {
+        try{
             transaction = this.session.beginTransaction();
             session.save(song);
             transaction.commit();
@@ -33,38 +48,13 @@ public class SongDAOimpl implements SongDAO {
             e.printStackTrace();
             return null;
         }
-
-    }
-
-    @Overri
-    public User updateSong(int id) {
-
-        try{
-
-            transaction = this.session.beginTransaction();
-            session.update(song,id);
-            transaction.commit();
-
-            return song ;
-        }catch (Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            return null;
-        }
-
     }
 
     @Override
-   @Override
-    public User getSong(int id) {
-
-        try{
-
+    public Song getSong(int id) {
+        try {
             transaction = this.session.beginTransaction();
-            return (Song) session.get(Song.class, id);
-
+            return session.get(Song.class, id);
         }catch (Exception e){
             if(transaction != null){
                 transaction.rollback();
@@ -76,7 +66,6 @@ public class SongDAOimpl implements SongDAO {
 
     @Override
     public boolean deleteSong(int id) {
-
         try{
             transaction = session.beginTransaction();
             Song song = (Song) session.get(Song.class , id);
@@ -92,6 +81,5 @@ public class SongDAOimpl implements SongDAO {
             e.printStackTrace();
             return false;
         }
-
     }
 }

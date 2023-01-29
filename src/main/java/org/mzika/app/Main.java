@@ -3,7 +3,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.mzika.orm.Song;
 import org.mzika.orm.User;
+
+import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +16,7 @@ public class Main {
         configuration.configure("hibernate.cfg.xml");
         System.out.println("The configuration files have been loaded");
 
-        User user = new User("DushValentin", "codesvalentin@gmail.com", "dushCode@123");
+        Song song = new Song("Voice of the hero", "codesvalentin@gmail.com", 12, "Rap".toLowerCase(Locale.ROOT));
 
         try {
             SessionFactory factory = configuration.buildSessionFactory();
@@ -22,7 +25,7 @@ public class Main {
             System.out.println("Beginning Transactions..........");
             Transaction transaction = session.beginTransaction();
 
-            session.saveOrUpdate(user);
+            session.saveOrUpdate(song);
 
             System.out.println("Committing transaction.............");
             transaction.commit();

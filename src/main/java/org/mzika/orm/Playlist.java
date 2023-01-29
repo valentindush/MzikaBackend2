@@ -5,19 +5,20 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "playlist")
+@Table(name = "playlists")
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Set<Song> songs;
 
     public Playlist(String name) {
-        super();
         this.name = name;
     }
 

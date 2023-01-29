@@ -3,33 +3,30 @@ package org.mzika.orm;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "song")
+@Table(name = "songs")
 public class Song {
-
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
     private String songName;
     @ManyToOne(cascade = CascadeType.ALL)
     private Artist artist;
+
+    @Column(name = "url")
     private String url;
+
+    @Column(name = "duration")
     private int duration;
     private int streams;
     private String genre;
 
-    public Song(String songName, String url, int duration) {
-        super();
+    public Song(String songName, String url, int duration,String genre) {
         this.songName = songName;
         this.url = url;
         this.duration = duration;
+        this.genre = genre;
     }
 
     public String getSongName() {
@@ -38,6 +35,14 @@ public class Song {
 
     public void setSongName(String songName) {
         this.songName = songName;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
     public String getUrl() {
@@ -62,5 +67,13 @@ public class Song {
 
     public void setStreams(int streams) {
         this.streams = streams;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }
