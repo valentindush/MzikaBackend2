@@ -4,6 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.mzika.DAO.ArtistDAO;
 import org.mzika.orm.Artist;
+import org.mzika.orm.User;
+
+import java.util.List;
 
 public class ArtistDAOimpl implements ArtistDAO {
 
@@ -48,5 +51,10 @@ public class ArtistDAOimpl implements ArtistDAO {
     @Override
     public boolean deleteArtist(int id) {
         return false;
+    }
+
+    @Override
+    public List<Artist> getAllArtist() {
+        return session.createQuery("FROM Artist ", Artist.class).list();
     }
 }

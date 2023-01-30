@@ -6,6 +6,8 @@ import org.mzika.DAO.SongDAO;
 import org.mzika.orm.Song;
 import org.mzika.orm.User;
 
+import java.util.List;
+
 public class SongDAOimpl implements SongDAO {
 
     private Session session;
@@ -81,5 +83,10 @@ public class SongDAOimpl implements SongDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Song> getAllSongs() {
+        return session.createQuery("FROM Song ", Song.class).list();
     }
 }

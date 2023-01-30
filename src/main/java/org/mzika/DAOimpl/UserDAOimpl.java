@@ -5,6 +5,8 @@ import org.hibernate.Transaction;
 import org.mzika.DAO.UserDAO;
 import org.mzika.orm.User;
 
+import java.util.List;
+
 public class UserDAOimpl implements UserDAO {
 
     private Session session;
@@ -17,8 +19,7 @@ public class UserDAOimpl implements UserDAO {
     @Override
     public User saveUser(User user) {
 
-        try {
-
+        try{
             transaction = this.session.beginTransaction();
             session.save(user);
             transaction.commit();
@@ -89,5 +90,10 @@ public class UserDAOimpl implements UserDAO {
             return false;
         }
 
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return session.createQuery("FROM User", User.class).list();
     }
 }

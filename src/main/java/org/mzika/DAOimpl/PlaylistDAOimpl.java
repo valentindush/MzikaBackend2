@@ -4,6 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.mzika.DAO.PlaylistDAO;
 import org.mzika.orm.Playlist;
+import org.mzika.orm.User;
+
+import java.util.List;
 
 public class PlaylistDAOimpl implements PlaylistDAO {
 
@@ -92,5 +95,10 @@ public class PlaylistDAOimpl implements PlaylistDAO {
             return false;
         }
 
+    }
+
+    @Override
+    public List<Playlist> getAllPlaylists() {
+        return session.createQuery("FROM Playlist", Playlist.class).list();
     }
 }
