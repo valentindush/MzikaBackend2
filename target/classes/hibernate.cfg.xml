@@ -8,13 +8,13 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mzika</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password"/>
 
-        <property name="hibernate.session_factory_name">SmisSessionFactory</property>
+        <property name="hibernate.session_factory_name">org.mzika.utils.SessionFactory</property>
         <property name="hibernate.connection.pool_size">1</property>
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+<!--        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.default_schema">mzika</property>
+<!--        <property name="hibernate.default_schema">mzika</property>-->
         <!--        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>-->
         <property name="current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
@@ -30,9 +30,9 @@
         <property name="hibernate.c3p0.timeout">1800</property>
 
         <!-- Models -->
-        <mapping class="org.mzika.orm.Artist"/>
-        <mapping class="org.mzika.orm.Playlist"/>
-        <mapping class="org.mzika.orm.Song"/>
         <mapping class="org.mzika.orm.User"/>
+        <mapping class="org.mzika.orm.Playlist"/>
+        <mapping class="org.mzika.orm.Artist"/>
+        <mapping class="org.mzika.orm.Song"/>
     </session-factory>
 </hibernate-configuration>

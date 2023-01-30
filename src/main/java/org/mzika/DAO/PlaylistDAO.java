@@ -1,6 +1,8 @@
-package org.mzika.orm.DAO;
+package org.mzika.DAO;
 
 import org.mzika.orm.Playlist;
+
+import java.util.List;
 
 public interface PlaylistDAO {
 
@@ -8,4 +10,6 @@ public interface PlaylistDAO {
     public Playlist updatePlaylist(Playlist playlist);
     public  Playlist getPlaylist(int id);
     public boolean deletePlaylist(int id);
+
+    public List<Playlist> getAllPlaylists();
 }

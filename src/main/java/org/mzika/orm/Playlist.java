@@ -2,27 +2,35 @@ package org.mzika.orm;
 
 import java.util.Set;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "playlist")
+@Table(name = "playlists")
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "song_id")
     private Set<Song> songs;
 
     public Playlist(String name) {
-        super();
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+
+    public Playlist() {
+
+    }
 
     public String getName() {
         return name;

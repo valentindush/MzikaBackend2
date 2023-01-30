@@ -1,38 +1,36 @@
 package org.mzika.app;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.mzika.DAOimpl.UserDAOimpl;
 import org.mzika.orm.User;
 
 public class Main {
     public static void main(String[] args) {
+
+        //Load configuration file
 
         System.out.println("The configuration are being loaded");
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
         System.out.println("The configuration files have been loaded");
 
-        User user = new User("DushValentin", "codesvalentin@gmail.com", "dushCode@123");
+        SessionFactory factory = configuration.buildSessionFactory();
+        Session session = factory.openSession();
 
-        try {
-            SessionFactory factory = configuration.buildSessionFactory();
-            Session session = factory.openSession();
+        //Save the user into the database
 
-            System.out.println("Beginning Transactions..........");
-            Transaction transaction = session.beginTransaction();
+        User user = new User("Emmy", "emmymanuel@gmail.com", "dushCode@123");
 
-            session.saveOrUpdate(user);
+        UserDAOimpl userDAOimpl = new UserDAOimpl(session);
 
-            System.out.println("Committing transaction.............");
-            transaction.commit();
-            System.out.println("Before Closing the session");
-            session.close();
-            factory.close();
+        userDAOimpl.saveUser(user);
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong");
-            e.printStackTrace();
-        }
+        //Close the connection
+
+        session.close();
+        factory.close();
+
     }
 }
