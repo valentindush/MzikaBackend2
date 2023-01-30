@@ -2,7 +2,7 @@ package org.mzika.orm;
 
 import java.util.Set;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 @Entity
 @Table(name = "artists")
 public class Artist {
@@ -21,6 +21,10 @@ public class Artist {
 
     public Artist(String artistName) {
         ArtistName = artistName;
+    }
+
+    public Artist() {
+
     }
 
     public String getArtistName() {

@@ -10,7 +10,7 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"/>
 
-        <property name="hibernate.session_factory_name">SessionFactory</property>
+        <property name="hibernate.session_factory_name">org.mzika.utils.SessionFactory</property>
         <property name="hibernate.connection.pool_size">1</property>
 <!--        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

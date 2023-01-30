@@ -1,6 +1,6 @@
 package org.mzika.orm;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
@@ -8,7 +8,6 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
     @Column(name = "userName")
@@ -26,9 +25,12 @@ public class User {
         this.password = password;
     }
 
+    public User() {
+
+    }
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Playlist> playlists;
-
     public String getUserName() {
         return userName;
     }

@@ -1,12 +1,10 @@
 package org.mzika.app;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.mzika.orm.Song;
+import org.mzika.DAOimpl.UserDAOimpl;
 import org.mzika.orm.User;
-
-import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,26 +14,17 @@ public class Main {
         configuration.configure("hibernate.cfg.xml");
         System.out.println("The configuration files have been loaded");
 
-        Song song = new Song("Voice of the hero", "codesvalentin@gmail.com", 12, "Rap".toLowerCase(Locale.ROOT));
+        SessionFactory factory = configuration.buildSessionFactory();
+        Session session = factory.openSession();
 
-        try {
-            SessionFactory factory = configuration.buildSessionFactory();
-            Session session = factory.openSession();
+        User user = new User("Emmy", "emmymanuel@gmail.com", "dushCode@123");
 
-            System.out.println("Beginning Transactions..........");
-            Transaction transaction = session.beginTransaction();
+        UserDAOimpl userDAOimpl = new UserDAOimpl(session);
 
-            session.saveOrUpdate(song);
+        userDAOimpl.saveUser(user);
 
-            System.out.println("Committing transaction.............");
-            transaction.commit();
-            System.out.println("Before Closing the session");
-            session.close();
-            factory.close();
+        session.close();
+        factory.close();
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong");
-            e.printStackTrace();
-        }
     }
 }

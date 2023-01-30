@@ -1,6 +1,6 @@
 package org.mzika.orm;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "songs")
@@ -19,14 +19,33 @@ public class Song {
 
     @Column(name = "duration")
     private int duration;
+
+    @Column(name = "streams")
     private int streams;
     private String genre;
+
+
+    @ManyToOne
+    @JoinColumn(name = "playlist_id")
+    private  Playlist playlist;
+
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
 
     public Song(String songName, String url, int duration,String genre) {
         this.songName = songName;
         this.url = url;
         this.duration = duration;
         this.genre = genre;
+    }
+
+    public Song() {
+
     }
 
     public String getSongName() {

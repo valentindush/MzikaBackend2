@@ -18,10 +18,6 @@ import org.hibernate.service.ServiceRegistry;
 public class SessionFactory {
 
     private static org.hibernate.SessionFactory sessionFactory;
-    private static StandardServiceRegistryBuilder serviceRegistryBuilder;
-    private static String configFile = "hibernate.cfg.xml";
-    private static Configuration configuration;
-    private static ServiceRegistry serviceRegistry;
 
     private SessionFactory() {
     }
@@ -33,11 +29,12 @@ public class SessionFactory {
      */
     private static org.hibernate.SessionFactory getInstance() throws HibernateException{
         if (sessionFactory == null) {
-            configuration = new Configuration();
-            serviceRegistryBuilder = new StandardServiceRegistryBuilder();
+            Configuration configuration = new Configuration();
+            StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
+            String configFile = "hibernate.cfg.xml";
             configuration.configure(configFile);
             serviceRegistryBuilder.applySettings(configuration.getProperties());
-            serviceRegistry = serviceRegistryBuilder.build();
+            ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         }
         return sessionFactory;
